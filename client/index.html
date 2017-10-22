@@ -4,7 +4,9 @@
 <div id="gameform" style="visibility: hidden;">
 	<link rel="icon" href="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/1b/1b9f717d94ea2f0acef9b01ad20afd0cbd589e13_full.jpg">
 	<canvas id="ctx" width="1000" height="200" style="border:1px solid #000000;"></canvas>
-	<div style="font: 15px arial, sans-serif; font-weight: bold;">
+	<div style="font: 15px arial, sans-serif; font-weight: bold;    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px; height: 350px;width: 300px;">
 		<p id="p0">sa!</p>
 		<p id="p1">sa!</p>
 		<p id="p2">sa!</p>
@@ -26,10 +28,10 @@
 
 
 <div id="chatdiv" style="visibility: hidden;">
-<div id="chat-text" style="width:500px;height:200px;overflow-y:scroll;background-color:	green;"></div>
-<form id="chat-form" autocomplete="off">
-    <input id="chat-input" type="text" style="width:500px;"></input>
-</form>
+	<div id="chat-text" style="width:500px;height:200px;overflow-y:scroll;background-color:	#d5edb4;display: inline-block;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;"></div>
+	<form id="chat-form" autocomplete="off">
+		<input id="chat-input" type="text" style="width:500px;height: 10px;background-color: #C9EA9C;padding: 12px 5px;margin: 8px 0;display: inline-block;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;" ></input>
+	</form>
 </div>
 
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
@@ -38,26 +40,26 @@
 	var ctx = document.getElementById("ctx").getContext("2d");
 
 	var chatText = document.getElementById('chat-text');
-    var chatInput = document.getElementById('chat-input');
-    var chatForm = document.getElementById('chat-form');
+	var chatInput = document.getElementById('chat-input');
+	var chatForm = document.getElementById('chat-form');
 
-		chatForm.onsubmit = function(e){
-		        e.preventDefault();
-		        if(chatInput.value != '')
-		        	socket.emit('sendMsgToServer',chatInput.value);
-		        chatInput.value = '';
-		        chatInput.blur();      
-		    	}
+	chatForm.onsubmit = function(e){
+		e.preventDefault();
+		if(chatInput.value != '')
+			socket.emit('sendMsgToServer',chatInput.value);
+		chatInput.value = '';
+		chatInput.blur();      
+	}
 
 	var socket = io();
 	var boxes;
 	var boxesX;
 	var boxesY;
 	var points = {
-	x : 550,
-	y : 140,
-	width :15,
-	height :15,
+		x : 550,
+		y : 140,
+		width :15,
+		height :15,
 	}
 	var playerdata;
 	var colors = ["#00ff00","#0000ff","#bf00ff","#00ff00","#ff00bf","#ff0040","#ff0000","#ff8000","#ffbf00","#bf00ff","#ff0080"];
@@ -82,9 +84,9 @@
 		chatdiv.style.visibility = 'visible';
 	}
 
-	        socket.on('addToChat',function(data){
-	        chatText.innerHTML += '<div style="font-weight:bold;color: white;">' + data + '</div>';
-	   		});
+	socket.on('addToChat',function(data){
+		chatText.innerHTML += '<div style="">' + data + '</div>';
+	});
 
 	setInterval(function(){
    		//background color
@@ -94,16 +96,16 @@
    		ctx.fill();
 		//background 
 		for(i in playerdata) {
-				if(playerdata[i].number == 1){ctx.fillStyle = colors[0];	document.getElementById("p"+i).style.color = colors[0];} 
-				if(playerdata[i].number == 2){ctx.fillStyle = colors[1];	document.getElementById("p"+i).style.color = colors[1];} 
-				if(playerdata[i].number == 3){ctx.fillStyle = colors[2];	document.getElementById("p"+i).style.color = colors[2];} 
-				if(playerdata[i].number == 4){ctx.fillStyle = colors[3];	document.getElementById("p"+i).style.color = colors[3];} 
-				if(playerdata[i].number == 5) {ctx.fillStyle = colors[4];	document.getElementById("p"+i).style.color = colors[4];} 
-				if(playerdata[i].number == 6){ctx.fillStyle = colors[5];	document.getElementById("p"+i).style.color = colors[5];} 
-				if(playerdata[i].number == 7) {ctx.fillStyle = colors[6];	document.getElementById("p"+i).style.color = colors[6];} 
-				if(playerdata[i].number == 8) {ctx.fillStyle = colors[7];	document.getElementById("p"+i).style.color = colors[7];} 
-				if(playerdata[i].number == 9) {ctx.fillStyle = colors[8];	document.getElementById("p"+i).style.color = colors[8];} 
-				if(playerdata[i].number == 0) {ctx.fillStyle = colors[9];	document.getElementById("p"+i).style.color = colors[9];} 
+			if(playerdata[i].number == 1){ctx.fillStyle = colors[0];	document.getElementById("p"+i).style.color = colors[0];} 
+			if(playerdata[i].number == 2){ctx.fillStyle = colors[1];	document.getElementById("p"+i).style.color = colors[1];} 
+			if(playerdata[i].number == 3){ctx.fillStyle = colors[2];	document.getElementById("p"+i).style.color = colors[2];} 
+			if(playerdata[i].number == 4){ctx.fillStyle = colors[3];	document.getElementById("p"+i).style.color = colors[3];} 
+			if(playerdata[i].number == 5) {ctx.fillStyle = colors[4];	document.getElementById("p"+i).style.color = colors[4];} 
+			if(playerdata[i].number == 6){ctx.fillStyle = colors[5];	document.getElementById("p"+i).style.color = colors[5];} 
+			if(playerdata[i].number == 7) {ctx.fillStyle = colors[6];	document.getElementById("p"+i).style.color = colors[6];} 
+			if(playerdata[i].number == 8) {ctx.fillStyle = colors[7];	document.getElementById("p"+i).style.color = colors[7];} 
+			if(playerdata[i].number == 9) {ctx.fillStyle = colors[8];	document.getElementById("p"+i).style.color = colors[8];} 
+			if(playerdata[i].number == 0) {ctx.fillStyle = colors[9];	document.getElementById("p"+i).style.color = colors[9];} 
 
 			ctx.beginPath();
 			ctx.rect(playerdata[i].x,playerdata[i].y, 10, 10);
@@ -120,10 +122,10 @@
 			ctx.fill();
 		}
 
-			ctx.fillStyle = "#612e55";
-			ctx.beginPath();
-			ctx.rect(points.x,points.y, points.height, points.width);
-			ctx.fill();
+		ctx.fillStyle = "#612e55";
+		ctx.beginPath();
+		ctx.rect(points.x,points.y, points.height, points.width);
+		ctx.fill();
 	},1000/60);
 
 
