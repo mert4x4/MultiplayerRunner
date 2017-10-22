@@ -1,0 +1,16 @@
+{
+  "name": "multiplayer-runner",
+  "version": "1.9.0",
+  "description": "a multiplayer game u can play with your friends",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "mert4x4",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^2.0.3"
+  }
+}
