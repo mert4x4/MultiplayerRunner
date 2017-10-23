@@ -8,6 +8,7 @@ app.get('/',function(req, res) {
 });
 app.use('/client',express.static(__dirname + '/client'));
  
+var i;
 serv.listen(2000);
 console.log("\x1b[42m","Server started.");
  
@@ -216,9 +217,8 @@ io.sockets.on('connection', function(socket){
 
 });
 
-
-
 setInterval(function(){
+
     var pack = [];
     var pack_boxes = [];
     for(var i in PLAYER_LIST){
@@ -289,6 +289,5 @@ setInterval(function(){
         var socket = SOCKET_LIST[i];
         socket.emit('boxesPos',pack_boxes);
     }
-
 
 },1000/60);
