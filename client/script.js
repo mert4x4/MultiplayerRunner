@@ -34,6 +34,9 @@
 	function setName() {
 		var name_,
 		name_ = document.getElementById("name__").value;
+		if(name_ = ' ')
+			name_ = "idiot";
+		
 		socket.emit('SetName',{name:name_});
 
 		form = document.getElementById("nicknameform");

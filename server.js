@@ -3,17 +3,17 @@ var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
 
-/* 
-app.get('/',function(req, res) {
-    res.sendFile(__dirname + '/client/index.html');
-});
-*/
-
 app.use('/',express.static(__dirname + '/client'));
  
 serv.listen(2000);
 console.log("\x1b[42m","Server started.");
  
+time = new Date();
+
+var hh = time.getHours();
+var mm = time.getMinutes();
+var ss = time.getSeconds() 
+
 var SOCKET_LIST = {};
 var PLAYER_LIST = {};
 
@@ -185,7 +185,7 @@ var Player = function(id){
  
 var io = require('socket.io')(serv,{});
 io.sockets.on('connection', function(socket){
-	console.log('\x1b[33m%s\x1b[0m',socket.handshake.address);
+	console.log('\x1b[33m%s\x1b[0m',hh + ":" + mm + ":" + ss +"  " + socket.handshake.address);
     socket.id = Math.random();
     SOCKET_LIST[socket.id] = socket;
  
@@ -220,6 +220,10 @@ io.sockets.on('connection', function(socket){
 });
 
 setInterval(function(){
+	time = new Date();
+	hh = time.getHours();
+	mm = time.getMinutes();
+	ss = time.getSeconds() 
 
     var pack = [];
     var pack_boxes = [];
