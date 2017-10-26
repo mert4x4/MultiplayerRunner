@@ -5,10 +5,17 @@ var serv = require('http').Server(app);
 
 app.use('/',express.static(__dirname + '/client'));
  
+
+app.get('/info', function(req, res) {
+    res.json(infodata);
+});
+
 serv.listen(2000);
 console.log("\x1b[42m","Server started.");
  
 time = new Date();
+
+var infodata = [];
 
 var hh = time.getHours();
 var mm = time.getMinutes();
@@ -227,6 +234,8 @@ setInterval(function(){
 
     var pack = [];
     var pack_boxes = [];
+
+    infodata = pack;
     for(var i in PLAYER_LIST){
         var player = PLAYER_LIST[i];
         player.updatePosition();

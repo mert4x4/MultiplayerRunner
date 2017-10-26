@@ -34,7 +34,7 @@
 	function setName() {
 		var name_,
 		name_ = document.getElementById("name__").value;
-		if(name_ = ' ')
+		if(name_ == "")
 			name_ = "idiot";
 		
 		socket.emit('SetName',{name:name_});
