@@ -83,6 +83,7 @@
 		ctx.beginPath();
 		ctx.rect(points.x,points.y, points.height, points.width);
 		ctx.fill();
+		//socket.emit('SetPlayer',{number:0,name:'suka',score:'0'});
 	},1000/60);
 
 
