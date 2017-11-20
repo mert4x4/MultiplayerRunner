@@ -24,7 +24,7 @@
 		height :15,
 	}
 	var playerdata;
-	var colors = ["#00ff00","#0000ff","#bf00ff","#00ff00","#ff00bf","#ff0040","#ff0000","#ff8000","#ffbf00","#bf00ff","#ff0080"];
+	
 	socket.on('newPositions',function(data){playerdata = data;});
 
 	socket.on('pointPositions',function(data){points = data;});
@@ -50,7 +50,7 @@
 	}
 
 	socket.on('addToChat',function(data){
-		chatText.innerHTML += '<div style="">' + data + '</div>';
+		chatText.innerHTML += '<div style=" ">' + data + '</div>';
 	});
 
 	setInterval(function(){
@@ -63,17 +63,7 @@
    		ctx.fill();
 		//background 
 		for(i in playerdata) {
-			if(playerdata[i].number == 1){ctx.fillStyle = colors[0];	document.getElementById("p"+i).style.color = colors[0];} 
-			if(playerdata[i].number == 2){ctx.fillStyle = colors[1];	document.getElementById("p"+i).style.color = colors[1];} 
-			if(playerdata[i].number == 3){ctx.fillStyle = colors[2];	document.getElementById("p"+i).style.color = colors[2];} 
-			if(playerdata[i].number == 4){ctx.fillStyle = colors[3];	document.getElementById("p"+i).style.color = colors[3];} 
-			if(playerdata[i].number == 5) {ctx.fillStyle = colors[4];	document.getElementById("p"+i).style.color = colors[4];} 
-			if(playerdata[i].number == 6){ctx.fillStyle = colors[5];	document.getElementById("p"+i).style.color = colors[5];} 
-			if(playerdata[i].number == 7) {ctx.fillStyle = colors[6];	document.getElementById("p"+i).style.color = colors[6];} 
-			if(playerdata[i].number == 8) {ctx.fillStyle = colors[7];	document.getElementById("p"+i).style.color = colors[7];} 
-			if(playerdata[i].number == 9) {ctx.fillStyle = colors[8];	document.getElementById("p"+i).style.color = colors[8];} 
-			if(playerdata[i].number == 0) {ctx.fillStyle = colors[9];	document.getElementById("p"+i).style.color = colors[9];} 
-
+			ctx.fillStyle = playerdata[i].color; document.getElementById("p"+i).style.color = playerdata[i].color;
 			ctx.beginPath();
 			ctx.rect(playerdata[i].x,playerdata[i].y, 10, 10);
 			ctx.fill();
